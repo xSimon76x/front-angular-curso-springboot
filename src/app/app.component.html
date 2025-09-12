@@ -1,0 +1,19 @@
+
+
+<main class="main">
+ <button type="button" (click)="setEnabled()">
+  {{ enabled ? 'Ocultar' : 'Mostrar'}}
+</button>
+<div *ngIf="enabled; else notEnabled">
+  <h2>{{ title }}</h2>
+</div>
+
+<ng-template #notEnabled>
+  <div>
+    Lo sentimos no esta disponible
+  </div>
+</ng-template>
+</main>
+
+
+<router-outlet />
