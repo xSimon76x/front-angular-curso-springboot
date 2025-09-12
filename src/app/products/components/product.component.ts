@@ -28,6 +28,10 @@ export class ProductComponent implements OnInit {
       products => this.products = products
     );
   }
+
+  addProduct(product: Product) {
+    this.products = [...this.products, {...product, id: new Date().getTime() }];
+  } 
 ;
 
 
