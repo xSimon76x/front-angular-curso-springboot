@@ -1,0 +1,16 @@
+<form action="">
+    <div>
+        <input type="text" name="name" id="name" [(ngModel)]="product.name">
+    </div>
+    <div>
+        <input type="text" name="description" id="description" [(ngModel)]="product.description">
+    </div>
+    <div>
+        <!-- [(ngModel)]="product.price" Sirve para poder capturar y poblar datos a este input -->
+         <!-- desde alguna variable o atributo de un objeto que este en el componente -->
+        <input type="text" name="price" id="price" [(ngModel)]="product.price">
+    </div>
+    <div>
+        <button>Crear</button>
+    </div>
+</form>
