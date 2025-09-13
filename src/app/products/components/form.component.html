@@ -11,6 +11,6 @@
         <input type="text" name="price" id="price" [(ngModel)]="product.price">
     </div>
     <div>
-        <button>Crear</button>
+        <button>{{product.id > 0 ? 'Update' : 'Create'}}</button>
     </div>
 </form>
