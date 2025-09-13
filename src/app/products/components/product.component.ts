@@ -16,6 +16,8 @@ export class ProductComponent implements OnInit {
 
   products: Product[] = [];
 
+  productSelected: Product = new Product();
+
   // Inyectar service en el componente
   constructor(private service: ProductService){ }
   
@@ -32,6 +34,10 @@ export class ProductComponent implements OnInit {
   addProduct(product: Product) {
     this.products = [...this.products, {...product, id: new Date().getTime() }];
   } 
+
+  onUpdateProduct(productRow: Product) {
+    this.productSelected = productRow;
+  }
 ;
 
 
