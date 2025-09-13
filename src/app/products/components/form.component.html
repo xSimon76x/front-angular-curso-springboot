@@ -11,6 +11,7 @@
         <input class="form-control" type="text" name="price" id="price" [(ngModel)]="product.price">
     </div>
     <div>
-        <button class="btn btn-primary">{{product.id > 0 ? 'Update' : 'Create'}}</button>
+        <button class="btn btn-primary my-2" type="submit">{{product.id > 0 ? 'Update' : 'Create'}}</button>
+        <button class="btn btn-success my-2" (click)="clean()" type="button">Clean</button>
     </div>
 </form>

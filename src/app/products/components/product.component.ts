@@ -53,7 +53,9 @@ export class ProductComponent implements OnInit {
   }
 
   onUpdateProduct(productRow: Product): void {
-    this.productSelected = productRow;
+    //? si uso productRow, para setea a la variable, se cambiaria en tiempo real, y se veria reflejado en la tabla sin presionar boton de update (mutable)
+    //? si coloco el {...productRow} no se cambiaria en tiempo real, y seria necesario presionar el boton de update, se clona el objeto del parametro y se envia (inmutable)
+    this.productSelected = {...productRow};
   }
 
 ;

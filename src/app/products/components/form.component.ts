@@ -29,4 +29,8 @@ export class FormComponent {
     this.newProductEvent.emit(this.product);
   }
 
+  clean(): void {
+    this.product = new Product();
+  }
+
 }
