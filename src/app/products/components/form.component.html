@@ -1,17 +1,51 @@
-<form (ngSubmit)="onSubmit()">
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
     <div>
-        <input class="form-control" type="text" name="name" id="name" [(ngModel)]="product.name">
+        <input class="form-control" type="text" name="name" id="name" #name="ngModel" [(ngModel)]="product.name" placeholder="Name" minlength="5"
+        required>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            
+            @if (name.errors!['required']) {
+                <div>
+                    Nombre es requerido!
+                </div>
+            }
+            <div *ngIf="name.errors!['minlength']">
+                Nombre debe tener un largo minimo de 5 caracteres!
+            </div>
+            
+        </div>
     </div>
     <div>
-        <input class="form-control" type="text" name="description" id="description" [(ngModel)]="product.description">
+        <input class="form-control" type="text" name="description" id="description" #description="ngModel" [(ngModel)]="product.description" placeholder="Description"
+        required>
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+            @if (description.errors!['required']) {
+                <div>
+                    Descripcion es requerido!
+                </div>
+            }
+        </div>
     </div>
     <div>
         <!-- [(ngModel)]="product.price" Sirve para poder capturar y poblar datos a este input -->
          <!-- desde alguna variable o atributo de un objeto que este en el componente -->
-        <input class="form-control" type="text" name="price" id="price" [(ngModel)]="product.price">
+        <input class="form-control" type="text" name="price" id="price" #price="ngModel" [(ngModel)]="product.price" placeholder="Price" min="5"
+        required>
+        
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+            @if (price.errors!['required']) {
+                <div>
+                    Precio es requerido!
+                </div>
+            }
+            
+            <div *ngIf="price.errors!['min']">
+                El precio debe ser mayor a 5!
+            </div>
+        </div>
     </div>
     <div>
-        <button class="btn btn-primary my-2" type="submit">{{product.id > 0 ? 'Update' : 'Create'}}</button>
+        <button class="btn btn-primary my-2" type="submit" [disabled]="!productForm.form.valid">{{product.id > 0 ? 'Update' : 'Create'}}</button>
         <button class="btn btn-success my-2" (click)="clean()" type="button">Clean</button>
     </div>
 </form>
