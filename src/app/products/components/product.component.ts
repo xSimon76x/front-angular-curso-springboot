@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): void {
 
     if (product.id > 0) {
       this.products = this.products.map(prod => {
@@ -44,12 +44,18 @@ export class ProductComponent implements OnInit {
 
       this.products = [...this.products, {...product, id: new Date().getTime() }];
     }
+    this.productSelected = new Product();
 
-  } 
+  }
 
-  onUpdateProduct(productRow: Product) {
+  onRemoveProduct(id: number): void {
+    this.products = this.products.filter( product => product.id != id);
+  }
+
+  onUpdateProduct(productRow: Product): void {
     this.productSelected = productRow;
   }
+
 ;
 
 
