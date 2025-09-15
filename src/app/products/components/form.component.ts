@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../models/Product';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,13 +16,17 @@ export class FormComponent {
 
   @Output() newProductEvent = new EventEmitter();
 
-  onSubmit(): void {
+  onSubmit(productForm: NgForm): void {
     //? De esta manera this.product obtiene la data del formulario, 
     //? gracias a la asociacion del input con el [(ngModel)] que llama al atributo del objeto product
     console.log(this.product)
 
-    //? Emitimos el producto que tenemos en el formulario, para que el componente padre lo reciba y lo agregue a la lista de productos
-    this.newProductEvent.emit(this.product);
+    if (productForm.valid) {
+      //? Emitimos el producto que tenemos en el formulario, para que el componente padre lo reciba y lo agregue a la lista de productos
+      this.newProductEvent.emit(this.product);
+    }
+
+    productForm.reset();
   }
 
   clean(): void {
