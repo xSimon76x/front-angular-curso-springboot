@@ -2,7 +2,7 @@
     <div>
         <input class="form-control" type="text" name="name" id="name" #name="ngModel" [(ngModel)]="product.name" placeholder="Name" minlength="5"
         required>
-        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
             
             @if (name.errors!['required']) {
                 <div>
@@ -18,7 +18,7 @@
     <div>
         <input class="form-control" type="text" name="description" id="description" #description="ngModel" [(ngModel)]="product.description" placeholder="Description"
         required>
-        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="alert alert-danger">
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
             @if (description.errors!['required']) {
                 <div>
                     Descripcion es requerido!
@@ -32,7 +32,7 @@
         <input class="form-control" type="text" name="price" id="price" #price="ngModel" [(ngModel)]="product.price" placeholder="Price" min="5"
         required>
         
-        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-danger">
             @if (price.errors!['required']) {
                 <div>
                     Precio es requerido!

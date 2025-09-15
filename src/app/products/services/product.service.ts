@@ -40,10 +40,17 @@ export class ProductService {
   }
 
   create(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.url, product);
+    const { name, description, price } = product;
+    //si lo envio con el id, da error, por que la BD ya genera un id y no necesita que se lo pasen
+    //aqui podria ser bueno considerar tener un DTO, para filtrar los atributos que solo necesito pedir y mandar
+    return this.http.post<Product>(this.url, { name, description, price });
   }
 
   update (product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.url}/${product.id}`, product);
   }; 
+  
+  remove(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
+  }
 }
