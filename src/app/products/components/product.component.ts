@@ -32,17 +32,25 @@ export class ProductComponent implements OnInit {
   }
 
   addProduct(product: Product): void {
-
     if (product.id > 0) {
-      this.products = this.products.map(prod => {
-        if (prod.id == product.id) {
-          return {...product};
+      this.service.update(product).subscribe(
+        productUpdate => {
+          this.products = this.products.map(prod => {
+            if (prod.id == product.id) {
+              return {...productUpdate};
+            }
+            return prod;
+          });
         }
-        return prod;
-      });
+      );
     }else {
 
-      this.products = [...this.products, {...product, id: new Date().getTime() }];
+      this.service.create(product)
+      .subscribe(
+        productNew => {
+          this.products = [...this.products, {...productNew }];
+        }
+      ); //? Si no nos suscribimos nunca va a ejecutar la peticion al backend
     }
     this.productSelected = new Product();
 
